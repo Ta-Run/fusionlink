@@ -1,16 +1,24 @@
-FROM node:alpine
 
-# $ npm install -g @nestjs/cli
+# Use the official Node.js image as the base image
+FROM node:19
 
-# nest fusion-link
+# Set the working directory inside the container
+WORKDIR /usr/src/app
 
-WORKDIR /app
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-COPY . .
-
+# Install the application dependencies
 RUN npm install
 
-RUN npm run start
-# expose ke bina bi kaam ho jata hian  but humko btana padata hain
-EXPOSE 4000
-CMD ["node " ,"main.ts"]
+# Copy the rest of the application files
+COPY . .
+
+# Build the NestJS application
+RUN npm run build
+
+# Expose the application port
+EXPOSE 3000
+
+# Command to run the application
+CMD ["node", "dist/main"] 
