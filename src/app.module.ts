@@ -1,10 +1,23 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'fusionpostgres',
+      password: 'mysecretpassword',
+      database: 'fusionlink',
+      entities: [__dirname + '/** /*.entity{.ts,.js}'],
+      synchronize: true,
+
+    })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
