@@ -96,3 +96,20 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+## Steps To Deploy in EC2
+1 push code on git repo
+2 create the account on aws 
+3 use the ec2 service and connect to instant 
+4 then setup your configuration and then click on connect instance button 
+5 take the clone by git hub repo
+6 then run the code 
+7 then setup for pm2 start 
+8 use command for sudo install pm2 
+9 then use pm2 start 
+10 then setup for ngninx to hide the local port 
+11 install nginx by sudo install nginx 
+12 then run commnad sudo nginx sysmtcl staus
+then run command nginx -t
+if get the output is isactive and test successfull means nginx get configured successfully
