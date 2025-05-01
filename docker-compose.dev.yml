@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17
+    container_name: fusionlinkdb
+    environment:
+      POSTGRES_USER: tarun
+      POSTGRES_PASSWORD: mysecretpasword
+      POSTGRES_DB: fusionlinkes
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: nest_app
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: tarun
+      DB_PASSWORD: mysecretpasword
+      DB_NAME: fusionlinkes
+    depends_on:
+      - db
+
+volumes:
+  db_data:

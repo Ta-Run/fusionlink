@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: tarun
+      DB_PASSWORD: mysecretpasword
+      DB_NAME: fusionlinkes
+    depends_on:
+      - db
